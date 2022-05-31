@@ -256,6 +256,24 @@ def p0016() -> int:
 	num = 2 ** 1000
 	return sum([int(x) for x in str(num)])
 
+def p0019() -> int:
+	"""Sundays that fell on the first of the month during the 20th century"""
+	# 171
+
+	from datetime import datetime
+	from itertools import product
+	
+	sunday = 6
+
+	years = list(range(1901, 2000+1))
+	months = list(range(1,12+1))
+	days = [1]
+
+	dates = product(years, months, days)
+	days = [datetime(*x).weekday() for x in dates]
+
+	return days.count(sunday)
+
 def p0020() -> int:
 	"""Find the sum of the digits in the number 100!"""
 	# 648
