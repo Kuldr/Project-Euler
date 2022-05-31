@@ -237,8 +237,8 @@ def p0015() -> int:
 	# 137846528820
 	goal = 20
 
-	# from functools import lru_cache
-	# @lru_cache(maxsize=None)
+	from functools import lru_cache
+	@lru_cache(maxsize=None)
 	def numPaths(x: int, y: int) -> int:
 		if x < 0 or y < 0:
 			return 0
