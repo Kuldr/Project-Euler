@@ -286,24 +286,26 @@ def p0020() -> int:
 
 def p0021() -> int:
 	"""Evaluate the sum of all the amicable numbers under 10000"""
-	# TBD
+	# 31626
 
 	target = 10_000
 
+	from helper import factors
+	from functools import cache
+	@cache
 	def sumProperFactors(n):
-		from helper import factors
-
 		ans = factors(n)
 		ans.remove(n)
 		return sum(ans)
 
 	def amicable(n):
 		sumA = sumProperFactors(n)
-		sumB
+		sumB = sumProperFactors(sumA)
+		if sumB == n and n != sumA:
+			return True
 		
-	
-	for x in range(target):
-		print(f"{x}: {sumProperFactors(x)}")
-		# factorsProper(x)
-	
-	pass
+	amicableCount = 0
+	for x in range(target+1):
+		if amicable(x):
+			amicableCount += x
+	return amicableCount
