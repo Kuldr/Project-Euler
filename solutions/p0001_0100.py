@@ -309,3 +309,27 @@ def p0021() -> int:
 		if amicable(x):
 			amicableCount += x
 	return amicableCount
+
+def p0022() -> int:
+	"""What is the total of all the name scores in the file?"""
+	# 871198282
+
+	# File in data section
+	f = open("solutions/data/p0022.txt", "r")
+	fileStr = f.read()
+	f.close()
+
+	# Format data into sorted list
+	fileStr = fileStr.translate({ord('"'): None})
+	names = fileStr.split(",")
+	names.sort()
+	
+	# Calculate scores
+	totalScore = 0
+	for i, name in enumerate(names):
+		nameScore = sum([ord(c) - ord("A") + 1 for c in name])
+
+		totalScore += nameScore * (i + 1)
+
+	return totalScore
+		
