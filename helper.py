@@ -41,9 +41,11 @@ def primeSieve(maxValue: int) -> List[int]:
 	return [2] + [k for k, v in candidates.items() if v == True]
 
 def factors(n: int) -> List[int]:
-	factorsList = [n]
-	for i in range(1, n//2+1):
+	from math import sqrt
+	factorsList = set([n])
+	for i in range(1, int(sqrt(n))+1):
 		if n % i == 0:
-			factorsList.append(i)
+			factorsList.add(i)
+			factorsList.add(n//i)
 
 	return factorsList

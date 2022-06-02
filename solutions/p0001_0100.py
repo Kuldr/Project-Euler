@@ -333,3 +333,42 @@ def p0022() -> int:
 
 	return totalScore
 		
+def p0023() -> int:
+	"""Sum of all +ive ints which are not the sum of two abundant numbers"""
+	# 4179871
+
+	limit = 128123
+
+	from helper import factors
+	def abundant(n: int) -> bool:
+		properFactors = factors(n)
+		properFactors.remove(n)
+		return sum(properFactors) > n
+
+	import time
+	startTime = time.perf_counter()
+	# Using set to ensure faster `in` look ups
+	abundants = set(n for n in range(limit) if abundant(n))
+	print(time.perf_counter() - startTime)
+
+	startTime = time.perf_counter()
+	notSumAbundants = []
+	for n in range(limit+1):
+		found = False
+		for x in abundants:
+			diff = n - x
+			if diff in abundants:
+				found = True
+				# print(f"{n} is sum of abundant")
+				break
+			if diff < 0:
+				# print(f"{n} - {x} is < 0")
+				break
+
+		if found == False:
+			# print(f"{n} is NOT sum of abundant")
+			notSumAbundants.append(n)
+
+	print(time.perf_counter() - startTime)
+	print(len(notSumAbundants))
+	return sum(notSumAbundants)

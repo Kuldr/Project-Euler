@@ -6,14 +6,13 @@ import time
 
 # Constants
 multiProblem = False
-singleProblem = 22
+singleProblem = 23
 problemFrom = 1
 problemTo = 100
 
 # import solutions.p0001_0100Tests as tests
 # unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(tests.p0001_0100Tests))
-# # unittest.TextTestRunner().run(tests.p0001_0100Tests)
-
+# unittest.TextTestRunner().run(tests.p0001_0100Tests)
 
 # Main program
 globalStart = time.perf_counter()
