@@ -344,3 +344,15 @@ def p0025() -> int:
 		fibs.append(fibs[-1] + fibs[-2])
 
 	return len(fibs)
+
+def p0036() -> int:
+	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
+	# 872187
+
+	acc = 0
+	for n in range(1_000_000):
+		if (base10 := str(n)) == base10[::-1] and \
+			(base2 := format(n, "b")) == base2[::-1]:
+			acc += n
+
+	return acc
