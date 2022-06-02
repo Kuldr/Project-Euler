@@ -334,3 +334,13 @@ def p0023() -> int:
 			notSumAbundants.append(n)
 
 	return sum(notSumAbundants)
+
+def p0025() -> int:
+	"""Index of the first term in the Fibonacci sequence to have 1000 digits?"""
+	# 4782
+
+	fibs = [1,1]
+	while len(str(fibs[-1])) < 1000:
+		fibs.append(fibs[-1] + fibs[-2])
+
+	return len(fibs)

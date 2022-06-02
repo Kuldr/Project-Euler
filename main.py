@@ -6,7 +6,7 @@ import time
 
 # Constants
 multiProblem = False
-singleProblem = 8
+singleProblem = 25
 problemFrom = 1
 problemTo = 100
 
