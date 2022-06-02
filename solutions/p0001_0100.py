@@ -212,8 +212,8 @@ def p0014() -> int:
 	"""Collatz sequence; Which starting number, under one million, produces the longest chain?"""
 	# 837799
 
-	from functools import lru_cache
-	@lru_cache(maxsize=None)
+	from functools import cache
+	@cache
 	def collatzLength(n: int) -> int:
 		if n == 1:
 			return 1
@@ -237,8 +237,8 @@ def p0015() -> int:
 	# 137846528820
 	goal = 20
 
-	from functools import lru_cache
-	@lru_cache(maxsize=None)
+	from functools import cache
+	@cache
 	def numPaths(x: int, y: int) -> int:
 		if x < 0 or y < 0:
 			return 0
