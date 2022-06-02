@@ -345,13 +345,9 @@ def p0023() -> int:
 		properFactors.remove(n)
 		return sum(properFactors) > n
 
-	import time
-	startTime = time.perf_counter()
 	# Using set to ensure faster `in` look ups
 	abundants = set(n for n in range(limit) if abundant(n))
-	print(time.perf_counter() - startTime)
 
-	startTime = time.perf_counter()
 	notSumAbundants = []
 	for n in range(limit+1):
 		found = False
@@ -359,16 +355,11 @@ def p0023() -> int:
 			diff = n - x
 			if diff in abundants:
 				found = True
-				# print(f"{n} is sum of abundant")
 				break
 			if diff < 0:
-				# print(f"{n} - {x} is < 0")
 				break
 
 		if found == False:
-			# print(f"{n} is NOT sum of abundant")
 			notSumAbundants.append(n)
 
-	print(time.perf_counter() - startTime)
-	print(len(notSumAbundants))
 	return sum(notSumAbundants)
