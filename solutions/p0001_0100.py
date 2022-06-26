@@ -265,7 +265,7 @@ def p0017() -> int:
 
 def p0018() -> int:
 	"""Find the maximum total from top to bottom of the triangle in the data"""
-	# TBD
+	# 1074
 
 	# File in data section
 	f = open("solutions/data/p0018.txt", "r")
@@ -295,7 +295,6 @@ def p0018() -> int:
 		return current + max(left, right)
 	
 	return largestSum(0, 0)
-	
 
 def p0019() -> int:
 	"""Sundays that fell on the first of the month during the 20th century"""
@@ -426,3 +425,36 @@ def p0036() -> int:
 			acc += n
 
 	return acc
+
+def p0067() -> int:
+	"""Find the maximum total from top to bottom of the triangle in the data"""
+	# 7273
+
+	# File in data section
+	f = open("solutions/data/p0067.txt", "r")
+	fileStr = f.read()
+	f.close()
+
+	# Parse data
+	lines = fileStr.split("\n")
+	nums = [line.split(" ") for line in lines]
+
+	triangle = {}
+	for y, row in enumerate(nums):
+		for x, col in enumerate(row):
+			triangle[(y, x)] = int(col)
+	
+	# Compute answer
+	from functools import cache
+	@cache
+	def largestSum(yCoord, xCoord):
+		current = triangle[yCoord, xCoord]
+		try:
+			left = largestSum(yCoord + 1, xCoord)
+			right = largestSum(yCoord + 1, xCoord + 1)
+		except KeyError:
+			return current
+
+		return current + max(left, right)
+	
+	return largestSum(0, 0)
