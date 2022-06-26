@@ -227,6 +227,42 @@ def p0016() -> int:
 	num = 2 ** 1000
 	return sum([int(x) for x in str(num)])
 
+def p0017() -> int:
+	"""How many letters used writing out numbers 1 to 1000"""
+	# 21124
+	
+	ones = {1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven",
+			8:"eight", 9:"nine", 10:"ten", 11:"eleven", 12: "twelve",
+			13:"thirteen", 14:"fourteen", 15:"fifteen", 16:"sixteen",
+			17:"seventeen", 18:"eighteen", 19:"nineteen"}
+	tens = {20:"twenty", 30:"thirty", 40:"forty", 50:"fifty", 60:"sixty",
+			70:"seventy", 80:"eighty", 90: "ninety"}
+
+	def numToWord(remainder: int) -> str:
+		ans = ""
+		while remainder >= 1:
+			if remainder >= 1000:
+				x = remainder // 1000
+				ans += ones[x] + "thousand"
+				remainder -= (x * 1000)
+			elif remainder >= 100:
+				x = remainder // 100
+				ans += ones[x] + "hundred"
+				remainder -= (x * 100)
+				if remainder > 0:
+					ans += "and"
+			elif remainder >= 20:
+				x = remainder // 10
+				ans += tens[x*10]
+				remainder -= (x * 10)
+			else:
+				ans += ones[remainder]
+				remainder -= remainder
+		
+		return ans
+	
+	return sum([len(numToWord(num)) for num in range(1, 1000+1)])
+
 def p0019() -> int:
 	"""Sundays that fell on the first of the month during the 20th century"""
 	# 171
