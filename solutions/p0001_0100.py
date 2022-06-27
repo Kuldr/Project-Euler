@@ -404,6 +404,18 @@ def p0023() -> int:
 
 	return sum(notSumAbundants)
 
+def p0024() -> int:
+	"""What is the millionth lexicographic permutation of the digits 0 to 9?"""
+	# 2783915460
+
+	# itertools perumtations outputs in lexiographic order
+	from itertools import permutations, islice
+	iterable = permutations("0123456789")
+	ansTuple = next(islice(iterable, 1_000_000, None))
+	ans = int("".join(ansTuple))
+
+	return ans
+
 def p0025() -> int:
 	"""Index of the first term in the Fibonacci sequence to have 1000 digits?"""
 	# 4782
