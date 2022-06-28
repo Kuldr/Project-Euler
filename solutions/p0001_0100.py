@@ -426,6 +426,31 @@ def p0025() -> int:
 
 	return len(fibs)
 
+def p0026() -> int:
+	"""Find d < 1000 for which 1/d contains the longest recurring cycle"""
+	# 983
+
+	longestCycle, longestCycleD = 0, 0
+
+	for d in range(2, 1_000):
+		# Attempted optimisation that skips numbers with prime factors
+		# 	of only 2 and 5 as these will be none recurring due to sharing
+		# 	prime factors with the base (10). While it does work the time gain
+		# 	is cancelled out with the time gain from calculating prime factors.
+		remainder = 1
+		partials = []
+		while remainder > 0:
+			remainder = (remainder  % d) * 10
+			if remainder in partials: # Recurring number found
+				cycleLength = len(partials) - partials.index(remainder)
+				if cycleLength > longestCycle:
+					longestCycle, longestCycleD = cycleLength, d
+				break
+			else:
+				partials.append(remainder)
+
+	return longestCycleD
+
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
 	# 872187
