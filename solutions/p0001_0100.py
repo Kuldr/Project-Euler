@@ -492,6 +492,16 @@ def p0029() -> int:
 
 	return len({a**b for a in range(2,100+1) for b in range(2,100+1)})
 
+def p0030() -> int:
+	"""Sum of all the numbers that are the sum of 5th powers of their digits."""
+	# 443839
+
+	upperLimit = 9**5 * 6 # 9_999_999 gives a 6 digit answer thus won't work
+	lowerLimit = 2**5
+
+	return sum([x for x in range(lowerLimit, upperLimit)
+				if sum([int(c)**5 for c in str(x)]) == x])
+				
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
 	# 872187
