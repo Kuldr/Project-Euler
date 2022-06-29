@@ -473,6 +473,19 @@ def p0027() -> int:
 
 	return ans
 
+def p0028() -> int:
+	"""What is the sum of the diagonal numbers in a 1001^2 clockwise spiral?"""
+	# 669171001
+
+	num = 1
+	count = 1
+	for x in range(2, 1001, 2):
+		for _ in range(4):
+			num += x
+			count += num
+
+	return count
+
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
 	# 872187
