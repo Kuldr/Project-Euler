@@ -5,6 +5,7 @@
  - Add testing when answer found - maybe in seperate file
  - Lazy generators in comprehensions [] to ()
  - Add multiprocessing to some tasks
+ - Add names of puzzles to the doc string
 
 ## Changes
  - p0019 - None datetime version
