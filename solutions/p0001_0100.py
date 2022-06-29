@@ -451,6 +451,28 @@ def p0026() -> int:
 
 	return longestCycleD
 
+def p0027() -> int:
+	"""Find |a, b| < 1000 that n^2 + an + b results in longest set of primes."""
+	# -59231
+
+	from helper import isPrime
+	from functools import cache
+	isPrime = cache(isPrime)
+
+	maxCount, ans = 0, 0 
+	
+	for a in range(-999, 1000):
+		for b in range(1000): # b can't be negative as when n = 0 result = b
+			n = 0
+			count = 0
+			while isPrime(candidate := n**2 + a * n + b):
+				n += 1
+				count += 1
+			if count > maxCount:
+				maxCount, ans = count, a * b
+
+	return ans
+
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
 	# 872187
