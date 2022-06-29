@@ -514,6 +514,12 @@ def p0036() -> int:
 
 	return acc
 
+def p0048() -> int:
+	"""Find the last ten digits of the series, 1^1 + 2^2 + ... + 1000^1000."""
+	# 9110846700
+
+	return int(str(sum([x**x for x in range(1, 1_000+1)]))[-10:])
+
 def p0067() -> int:
 	"""Find the maximum total from top to bottom of the triangle in the data"""
 	# 7273
