@@ -583,6 +583,19 @@ def p0037() -> int:
 		
 	return sum(truncatableP)
 
+def p0041() -> int:
+	"""What is the largest n-digit pandigital prime that exists?"""
+	# 7652413
+
+	from helper import isPrime
+	from itertools import permutations
+
+	pandigitals = [int("".join(n)) for i in range(1, 8) for n in permutations("123456789"[:i])]
+
+	for n in reversed(pandigitals):
+		if isPrime(n):
+			return n
+
 def p0048() -> int:
 	"""Find the last ten digits of the series, 1^1 + 2^2 + ... + 1000^1000."""
 	# 9110846700
