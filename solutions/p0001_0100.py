@@ -501,6 +501,34 @@ def p0030() -> int:
 
 	return sum([x for x in range(lowerLimit, upperLimit)
 				if sum([int(c)**5 for c in str(x)]) == x])
+
+def p0031() -> int:
+	"""How many different ways can £2 be made using any number of coins?"""
+	# 73682
+
+	target = 200
+	coins = [1, 2, 5, 10, 20, 50, 100, 200]
+
+	differentWays = []
+
+	from functools import cache
+	@cache
+	def recursiveSolve(remaining: int, currentList):
+		for coin in coins:
+			if (diff := remaining - coin) <  0:
+				break
+			elif diff == 0:
+				newList = tuple(sorted(currentList + (coin,)))
+				if newList not in differentWays:
+					differentWays.append(newList)
+					print(len(differentWays))
+			else:
+				recursiveSolve(diff, tuple(sorted(currentList + (coin,))))
+		pass
+
+	recursiveSolve(target, ())
+	return len(differentWays)
+
 				
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
