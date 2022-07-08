@@ -583,6 +583,20 @@ def p0037() -> int:
 		
 	return sum(truncatableP)
 
+
+def p0040() -> int:
+	"""Digits of Champernowne's constant"""
+	# 210
+
+	d = "."
+	for x in range(1, 1_000_000):
+		d += str(x)
+	
+	product = 1
+	for index in [1, 10, 100, 1_000, 10_000, 100_000, 1_000_000]:
+		product *= int(d[index])
+	return product
+
 def p0041() -> int:
 	"""What is the largest n-digit pandigital prime that exists?"""
 	# 7652413
