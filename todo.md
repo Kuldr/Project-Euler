@@ -6,6 +6,7 @@
  - Lazy generators in comprehensions [] to ()
  - Add multiprocessing to some tasks
  - Add names of puzzles to the doc string
+ - Create a prime number generator for helper
 
 ## Changes
  - p0019 - None datetime version

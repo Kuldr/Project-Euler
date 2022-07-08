@@ -539,6 +539,30 @@ def p0036() -> int:
 
 	return acc
 
+def p0037() -> int:
+	"""Find the sum of the only eleven primes that are both truncatable from left to right and right to left."""
+	# 748317
+
+	truncatableP = []
+
+	from helper import primeSieve
+	maxSize = 1_000_000
+	primes = set(primeSieve(maxSize)) # Need to create an infinite prime generator at some point
+
+	for prime in primes:
+		truncatable = True
+		for i in range(1, len(strP := str(prime))):
+			if int(strP[:i]) not in primes or int(strP[i:]) not in primes:
+				truncatable = False
+				break
+
+		if truncatable:
+			truncatableP.append(prime)
+		
+
+	truncatableP = [x for x in truncatableP if x not in [2,3,5,7]] # Remove single digit primes (not truncatable)
+	return sum(truncatableP)
+
 def p0048() -> int:
 	"""Find the last ten digits of the series, 1^1 + 2^2 + ... + 1000^1000."""
 	# 9110846700
