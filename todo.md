@@ -12,6 +12,7 @@
  - p0018 and p0067 same solution - merge code??
 
 ## Performance changes 
- - p0007 -very slow sieve generation
+ - p0007 - very slow sieve generation
+ - p0031 - slow due to generating valid combinations (pdf on project euler)
 
 ## Haskell ??

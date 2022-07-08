@@ -521,15 +521,12 @@ def p0031() -> int:
 				newList = tuple(sorted(currentList + (coin,)))
 				if newList not in differentWays:
 					differentWays.append(newList)
-					print(len(differentWays))
 			else:
 				recursiveSolve(diff, tuple(sorted(currentList + (coin,))))
-		pass
 
 	recursiveSolve(target, ())
 	return len(differentWays)
 
-				
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
 	# 872187
