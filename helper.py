@@ -24,7 +24,9 @@ def isPrime(n: int) -> bool:
 	from math import sqrt
 	sqrtN = int(sqrt(n)) + 1
 
-	for candidate in range(3, sqrtN):
+	if n % 2 == 0:
+		return False
+	for candidate in range(3, sqrtN, 2):
 		if n % candidate == 0:
 			return False
 	return True
