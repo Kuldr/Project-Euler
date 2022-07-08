@@ -527,6 +527,27 @@ def p0031() -> int:
 	recursiveSolve(target, ())
 	return len(differentWays)
 
+def p0035() -> int:
+	"""How many circular primes are there below one million?"""
+	# 55
+
+	from helper import primeSieve
+	target = 1_000_000
+	primes = set(primeSieve(target))
+	count = 0
+
+	for p in primes:
+		strP = str(p)
+		circularPrime = True
+		for i in range(1, len(strP)):
+			if int(strP[i:] + strP[:i]) not in primes:
+				circularPrime = False
+				break
+		if circularPrime:
+			count += 1
+
+	return count
+
 def p0036() -> int:
 	"""Sum of all n < 1,000,000, which are palindromic in base 10 and 2."""
 	# 872187
