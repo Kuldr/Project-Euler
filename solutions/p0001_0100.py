@@ -610,6 +610,27 @@ def p0041() -> int:
 		if isPrime(n):
 			return n
 
+def p0047() -> int:
+	"""Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?"""
+	# 134043
+
+	target = 4
+
+	from helper import primeFactors
+	numberPrimeFactors = lambda x: len(primeFactors(x))
+
+	candidate = 2*3*5*7 # Must be a lower bound as this is first number with 4 distinct prime factors
+	nConsecutive = 0
+	while nConsecutive < target:
+		if numberPrimeFactors(candidate) == target:
+			nConsecutive += 1
+		else:
+			nConsecutive = 0
+		
+		candidate += 1
+
+	return candidate - 4
+
 def p0048() -> int:
 	"""Find the last ten digits of the series, 1^1 + 2^2 + ... + 1000^1000."""
 	# 9110846700
