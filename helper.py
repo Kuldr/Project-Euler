@@ -1,19 +1,21 @@
 from typing import Dict, List
 
 def primeFactors(toFactor: int) -> Dict[int, int]:
+	from collections import defaultdict
+
 	current = 2
-	primeFactors = []
+	primeFactors = defaultdict(lambda: 0)
 	while current < toFactor:
 		if toFactor % current == 0:
-			primeFactors.append(current)
+			primeFactors[current] += 1
 			toFactor //= current
 		else:
 			current += 1
-	if current > 1:
-		primeFactors.append(current)
-		
-	# Turn into dictionary with exponents
-	return {prime:primeFactors.count(prime) for prime in set(primeFactors)}
+	
+	primeFactors[current] += 1
+
+	return primeFactors
+
 
 def isPrime(n: int) -> bool:
 	if n <= 1:

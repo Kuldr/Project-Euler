@@ -160,8 +160,8 @@ def p0012() -> int:
 	while numFactors(triangleN) < 500:
 		n += 1
 		triangleN += n
-		if n % 1000 == 0:
-			print(n, triangleN)
+		# if n % 1000 == 0:
+		# 	print(n, triangleN)
 		
 	return triangleN
 
