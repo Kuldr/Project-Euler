@@ -601,6 +601,22 @@ def p0037() -> int:
 		
 	return sum(truncatableP)
 
+def p0039() -> int:
+	"""For which value of p ≤ 1000, is the number of solutions maximised?"""
+	# 840
+
+	from itertools import combinations_with_replacement
+	combos = combinations_with_replacement(range(1000+1), 3)
+	filtered = filter(lambda x: sum(x) <= 1000, combos)
+
+	from collections import defaultdict
+	results = defaultdict(lambda: 0)
+
+	for a, b, c in filtered:
+		if a**2 + b**2 == c**2:
+			results[a+b+c] += 1
+	
+	return max(results, key = results.get)
 
 def p0040() -> int:
 	"""Digits of Champernowne's constant"""
