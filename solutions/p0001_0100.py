@@ -531,6 +531,28 @@ def p0031() -> int:
 	recursiveSolve(target, ())
 	return len(differentWays)
 
+def p0033() -> int:
+	"""Digit cancelling fractions"""
+	# 100
+
+	from fractions import Fraction
+	from itertools import combinations
+
+	combos = combinations(range(10,100), 2) # These will always have a < b
+	nonTrivial = filter(lambda x: not (x[0] % 10 == 0 and x[1] % 10 == 0), combos) # Remove trivial examples
+
+	result = Fraction(1, 1)
+	for top, bottom in nonTrivial:
+		sTop, sBottom = str(top), str(bottom)
+		for digit in sTop:
+			if digit in sBottom:
+				newTop = int(sTop.replace(digit, "", 1))
+				newBottom = int(sBottom.replace(digit, "", 1))
+				if newBottom != 0 and Fraction(newTop, newBottom) == Fraction(top, bottom):
+					result *= Fraction(top, bottom)
+
+	return result.denominator # Fraction library already automattically reduces itself
+
 def p0034() -> int:
 	"""Find the sum of all numbers which are equal to the sum of the factorial of their digits."""
 	# 40730
@@ -638,7 +660,7 @@ def p0041() -> int:
 	from helper import isPrime
 	from itertools import permutations
 
-	pandigitals = [int("".join(n)) for i in range(1, 8) for n in permutations("123456789"[:i])]
+	pandigitals = [int("".join(n)) for i in range(1, 8) for n in permutations("123456789"[:i])] # 8 and 9 digit pandigitals can't be prime as all divide by 3 through adding digits rule
 
 	for n in reversed(pandigitals):
 		if isPrime(n):
