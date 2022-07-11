@@ -1,6 +1,7 @@
 #  Todo
 
 ## Other nice changes
+ - Give all problems their name as a docstring
  - Add automatic collection and running of all code
  - Add testing when answer found - maybe in seperate file
  - Lazy generators in comprehensions [] to ()
