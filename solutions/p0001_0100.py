@@ -1,3 +1,7 @@
+from itertools import product
+from unittest import registerResult
+
+
 def p0001() -> int:
 	"""Sum of multiples of 3 or 5 below 1000"""
 	# 233168
@@ -526,6 +530,20 @@ def p0031() -> int:
 
 	recursiveSolve(target, ())
 	return len(differentWays)
+
+def p0034() -> int:
+	"""Find the sum of all numbers which are equal to the sum of the factorial of their digits."""
+	# 40730
+
+	# from functools import cache
+	from math import factorial
+
+	# factorial = cache(factorial) # ~10% quicker w/o memoization - Unsure why
+
+	factorialSum = lambda n: sum([factorial(int(c)) for c in str(n)])
+
+	limit = 7*factorial(9) # Both 9! * 6 and * 7 are 7 digit numbers 
+	return sum([x for x in range(3, limit) if factorialSum(x) == x])
 
 def p0035() -> int:
 	"""How many circular primes are there below one million?"""
