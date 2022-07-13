@@ -1,4 +1,5 @@
 from typing import Dict, List
+from unittest import result
 
 def primeFactors(toFactor: int) -> Dict[int, int]:
 	from collections import defaultdict
@@ -35,16 +36,14 @@ def isPrime(n: int) -> bool:
 
 def primeSieve(maxValue: int) -> List[int]:
 	candidates = {num: True for num in range(3, maxValue+1, 2)}
+	candidates[2] = True
 
-	for i in range(3, int(maxValue**0.5), 2):
+	for i in range(3, int(maxValue**0.5)+1, 2):
 		if candidates[i] == True:
-			j = i ** 2
-			while j < maxValue:
-				if j in candidates:
+			for j in range(i**2, maxValue+1, i):
 					candidates[j] = False
-				j += i
 
-	return [2] + [k for k, v in candidates.items() if v == True]
+	return [k for k, v in candidates.items() if v == True]
 
 def primeGenerator() -> int:
 	from math import sqrt
