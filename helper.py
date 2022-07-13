@@ -35,15 +35,15 @@ def isPrime(n: int) -> bool:
 	return True
 
 def primeSieve(maxValue: int) -> List[int]:
+	from math import sqrt, ceil
 	candidates = {num: True for num in range(3, maxValue+1, 2)}
-	candidates[2] = True
 
-	for i in range(3, int(maxValue**0.5)+1, 2):
+	for i in range(3, ceil(sqrt(maxValue)), 2):
 		if candidates[i] == True:
 			for j in range(i**2, maxValue+1, i):
 					candidates[j] = False
 
-	return [k for k, v in candidates.items() if v == True]
+	return [2] + [k for k, v in candidates.items() if v == True]
 
 def primeGenerator() -> int:
 	from math import sqrt
