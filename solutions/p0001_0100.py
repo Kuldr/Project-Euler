@@ -695,32 +695,23 @@ def p0048() -> int:
 
 def p0050() -> int:
 	"""Which prime, below one-million, can be written as the sum of the most consecutive primes?"""
-	# TBD
-
-	def subslices(seq):
-		"Return all contiguous non-empty subslices of a sequence"
-		# Taken from more-itertools - https://docs.python.org/3/library/itertools.html#itertools-recipes
-		# subslices('ABCD') --> A AB ABC ABCD B BC BCD C CD D
-		from itertools import starmap, combinations, repeat
-		from operator import getitem
-		slices = starmap(slice, combinations(range(len(seq) + 1), 2))
-		return map(getitem, repeat(seq), slices)
+	# 997651
 
 	target = 1_000_000
 	from helper import primeSieve
 	primes = primeSieve(target)
-	print(len(primes))
 
-	consecutivePrimes = subslices(primes)
 	longestLen, longestNum = 0, 0
 
-	for sequence in consecutivePrimes:
-		if (currentLen := len(sequence)) > longestLen and (currentSum := sum(sequence)) in primes:
-			longestLen, longestNum = currentLen, currentSum
-			print(f"{longestLen} \n {longestNum}")
+	for startIndex in range(lenPrimes := len(primes)):
+		for endIndex in range(startIndex, lenPrimes):
+			sequence = primes[startIndex:endIndex]
+			if (currentSum := sum(sequence)) > target:
+				break
+			if (currentLen := len(sequence)) > longestLen and currentSum in primes:
+				longestLen, longestNum = currentLen, currentSum
 
 	return longestNum
-
 
 def p0067() -> int:
 	"""Find the maximum total from top to bottom of the triangle in the data"""
