@@ -414,9 +414,10 @@ def p0024() -> int:
 
 	# itertools perumtations outputs in lexiographic order
 	from itertools import permutations, islice
+	from helper import digitsToInt
 	iterable = permutations("0123456789")
 	ansTuple = next(islice(iterable, 1_000_000, None))
-	ans = int("".join(ansTuple))
+	ans = digitsToInt(ansTuple)
 
 	return ans
 
@@ -657,10 +658,10 @@ def p0041() -> int:
 	"""What is the largest n-digit pandigital prime that exists?"""
 	# 7652413
 
-	from helper import isPrime
+	from helper import isPrime, digitsToInt
 	from itertools import permutations
 
-	pandigitals = [int("".join(n)) for i in range(1, 8) for n in permutations("123456789"[:i])] # 8 and 9 digit pandigitals can't be prime as all divide by 3 through adding digits rule
+	pandigitals = [digitsToInt(n) for i in range(1, 8) for n in permutations("123456789"[:i])] # 8 and 9 digit pandigitals can't be prime as all divide by 3 through adding digits rule
 
 	for n in reversed(pandigitals):
 		if isPrime(n):
@@ -671,6 +672,7 @@ def p0043() -> int:
 	# 16695334890
 
 	from itertools import permutations
+	from helper import digitsToInt
 
 	pandigitals09Str = ["".join(n) for n in permutations("0123456789")]
 	divTests = [2, 3, 5, 7, 11, 13, 17]
@@ -680,12 +682,12 @@ def p0043() -> int:
 		passedTests = True
 		for d in range(1, 8):
 			testDigits = [numStr[d], numStr[d+1], numStr[d+2]]
-			if int("".join(testDigits)) % divTests[d-1] != 0:
+			if digitsToInt(testDigits) % divTests[d-1] != 0:
 				passedTests = False
 				break
 		
 		if passedTests:
-			results.append(int("".join(numStr)))
+			results.append(digitsToInt(numStr))
 
 	return sum(results)
 

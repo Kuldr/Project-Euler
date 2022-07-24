@@ -1,6 +1,9 @@
 from typing import Dict, List
 from unittest import result
 
+from typing import Literal
+DigitsChar = Literal['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
 def primeFactors(toFactor: int) -> Dict[int, int]:
 	from collections import defaultdict
 
@@ -75,3 +78,6 @@ def factors(n: int) -> List[int]:
 			factorsList.add(n//i)
 
 	return factorsList
+
+def digitsToInt(digits: List[DigitsChar]) -> int:
+	return int("".join(digits))
