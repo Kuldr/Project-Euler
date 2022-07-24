@@ -666,6 +666,29 @@ def p0041() -> int:
 		if isPrime(n):
 			return n
 
+def p0043() -> int:
+	"""Sub-string divisibility"""
+	# 16695334890
+
+	from itertools import permutations
+
+	pandigitals09Str = ["".join(n) for n in permutations("0123456789")]
+	divTests = [2, 3, 5, 7, 11, 13, 17]
+
+	results = []
+	for numStr in pandigitals09Str:
+		passedTests = True
+		for d in range(1, 8):
+			testDigits = [numStr[d], numStr[d+1], numStr[d+2]]
+			if int("".join(testDigits)) % divTests[d-1] != 0:
+				passedTests = False
+				break
+		
+		if passedTests:
+			results.append(int("".join(numStr)))
+
+	return sum(results)
+
 def p0047() -> int:
 	"""Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?"""
 	# 134043
