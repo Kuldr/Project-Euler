@@ -1,3 +1,4 @@
+from cgi import test
 from itertools import product
 from unittest import registerResult
 
@@ -531,6 +532,31 @@ def p0031() -> int:
 
 	recursiveSolve(target, ())
 	return len(differentWays)
+
+def p0032() -> int:
+	"""Pandigital products"""
+	# TBD
+
+	from helper import digitsToInt
+	from itertools import permutations
+	pandigitals09Str = ["".join(n) for n in permutations("123456789")]
+	print(len(pandigitals09Str))
+	# pandigitals09Str = ["391867254"]
+
+	results = set()
+
+	# work out where to put "*" and "=="
+	maxIndex = len("123456789")
+	for testStr in pandigitals09Str:
+		for mulAfter in range(1, maxIndex):
+			for eqAfter in range(mulAfter+1, maxIndex):
+				testEquation = testStr[:mulAfter] + "*" + testStr[mulAfter:eqAfter] + "==" + testStr[eqAfter:]
+
+				if eval(testEquation):
+					results.add(digitsToInt(testStr[eqAfter:]))
+
+	# print(results)
+	return sum(results)
 
 def p0033() -> int:
 	"""Digit cancelling fractions"""
