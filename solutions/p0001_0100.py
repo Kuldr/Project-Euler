@@ -535,16 +535,13 @@ def p0031() -> int:
 
 def p0032() -> int:
 	"""Pandigital products"""
-	# TBD
+	# 45288
 
 	from helper import digitsToInt
 	from itertools import permutations
 	pandigitals09Str = ["".join(n) for n in permutations("123456789")]
-	print(len(pandigitals09Str))
-	# pandigitals09Str = ["391867254"]
 
 	results = set()
-
 	# work out where to put "*" and "=="
 	maxIndex = len("123456789")
 	for testStr in pandigitals09Str:
