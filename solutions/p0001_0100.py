@@ -1,4 +1,5 @@
 from cgi import test
+from cgitb import reset
 from itertools import product
 from unittest import registerResult
 
@@ -689,6 +690,35 @@ def p0041() -> int:
 	for n in reversed(pandigitals):
 		if isPrime(n):
 			return n
+
+def p0042() -> int:
+	"""Coded triangle numbers"""
+	# 162
+
+	def checkTriangle(t: int) -> bool:
+		# Uses the inverse of the triangle number formula
+		# The input is a triangle number if integer result
+		result = (-1 + (1+8*t)**0.5) / 2 
+		return result.is_integer()
+
+	def uppercaseCharToIndex(c: str) -> int:
+		from string import ascii_uppercase
+		return ascii_uppercase.index(c) + 1
+
+	# File in data section
+	f = open("solutions/data/p0042.txt", "r")
+	fileStr = f.read()
+	f.close()
+
+	words = [x[1:-1] for x in fileStr.split(',')]
+
+	result = 0
+	for word in words:
+		wordValue = sum(map(uppercaseCharToIndex, word))
+		if checkTriangle(wordValue):
+			result += 1
+
+	return result
 
 def p0043() -> int:
 	"""Sub-string divisibility"""
