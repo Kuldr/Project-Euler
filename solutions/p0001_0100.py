@@ -837,6 +837,22 @@ def p0048() -> int:
 
 	return int(str(sum([x**x for x in range(1, 1_000+1)]))[-10:])
 
+def p0049() -> int:
+	"""Prime permutations"""
+	# 296962999629
+
+	from helper import primeSieve, digitsToInt
+	primes = primeSieve(9999)
+	primes.remove(1487)
+
+	for n1 in primes:
+		n2 = n1 + 3330
+		n3 = n2 + 3330
+
+ 		# check all are prime (know n1 is prime)
+		if n2 in primes and n3 in primes and sorted(str(n1)) == sorted(str(n2)) and sorted(str(n1)) == sorted(str(n3)):
+			return digitsToInt(str(n1)+str(n2)+str(n3))
+
 def p0050() -> int:
 	"""Which prime, below one-million, can be written as the sum of the most consecutive primes?"""
 	# 997651
