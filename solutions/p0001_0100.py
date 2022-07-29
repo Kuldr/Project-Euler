@@ -1,6 +1,8 @@
 from cgi import test
 from cgitb import reset
 from itertools import product
+from math import comb
+from turtle import pen
 from unittest import registerResult
 
 
@@ -763,6 +765,23 @@ def p0043() -> int:
 			results.append(digitsToInt(numStr))
 
 	return sum(results)
+
+def p0044() -> int:
+	"""Pentagon numbers"""
+	# TBD
+
+	upperbound = 10_000 # Trial and error upper bound
+	pentagonals = set(int(n*(3*n - 1)/2) for n in range(1, upperbound))
+
+	from itertools import combinations
+
+	results = []
+	for pj, pk in combinations(pentagonals, 2):
+		if pj + pk in pentagonals and (d := abs(pj - pk)) in pentagonals:
+			results.append(d)
+
+	print(results)
+	return min(results)
 
 def p0045() -> int:
 	"""Triangular, pentagonal, and hexagonal"""
