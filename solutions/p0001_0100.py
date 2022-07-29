@@ -648,6 +648,26 @@ def p0037() -> int:
 		
 	return sum(truncatableP)
 
+def p0038() -> int:
+	"""Pandigital multiples"""
+	# 932718654
+
+	def isPandigital(nStr: str) -> bool:
+		return sorted(nStr) == ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+	results = []
+	for x in range(10_000): # lowest n > 1 is 2 so max x is a 4 digit number
+		concatenatedProductStr = ""
+		n = 1
+		while len(concatenatedProductStr) < 9:
+			concatenatedProductStr += str(n * x)
+			n += 1
+		if len(concatenatedProductStr) == 9 and isPandigital(concatenatedProductStr):
+			results.append(int(concatenatedProductStr))
+
+	return max(results)
+
+
 def p0039() -> int:
 	"""For which value of p ≤ 1000, is the number of solutions maximised?"""
 	# 840
