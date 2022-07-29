@@ -744,6 +744,33 @@ def p0043() -> int:
 
 	return sum(results)
 
+def p0045() -> int:
+	"""Triangular, pentagonal, and hexagonal"""
+	# 1533776805
+
+	def checkTriangular(t: int) -> bool:
+		# Uses the inverse of the triangle number formula
+		# The input is a triangle number if integer result
+		# Taken from p0042
+		result = (-1 + (1+8*t)**0.5) / 2 
+		return result.is_integer()
+
+	def checkPentagonal(p: int) -> bool:
+		# Uses the inverse of the pentagon number formula
+		# The input is a pentagon number if integer result
+		result = (1 + (1+24*p)**0.5) / 6 
+		return result.is_integer()
+
+	def nthHexagonal(n: int) -> int:
+		return n * (2*n - 1)
+
+	n = 144 # Finding next n after 143
+	while True:
+		candidate = nthHexagonal(n)
+		if checkPentagonal(candidate) and checkTriangular(candidate):
+			return candidate
+		n += 1
+
 def p0047() -> int:
 	"""Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?"""
 	# 134043
