@@ -1,11 +1,3 @@
-from cgi import test
-from cgitb import reset
-from itertools import product
-from math import comb
-from turtle import pen
-from unittest import registerResult
-
-
 def p0001() -> int:
 	"""Sum of multiples of 3 or 5 below 1000"""
 	# 233168
@@ -809,6 +801,34 @@ def p0045() -> int:
 		if checkPentagonal(candidate) and checkTriangular(candidate):
 			return candidate
 		n += 1
+
+def p0046() -> int:
+	"""Goldbach's other conjecture"""
+	# 5777
+
+	from helper import isPrime, primeSieve
+
+	# Change to a generator ??
+	def twiceSquaresBelow(max: int):
+		result = []
+		n = 1
+		while (twiceSquare := 2*n**2) < max:
+			result.append(twiceSquare)
+			n += 1
+		return result
+
+	n = 35
+	while True:
+		if not isPrime(n):
+			primesBelow = set(primeSieve(n))
+			positiveResult = False
+			for x in twiceSquaresBelow(n):
+				if n - x in primesBelow:
+					positiveResult = True
+					break
+			if not positiveResult:
+				return n
+		n += 2
 
 def p0047() -> int:
 	"""Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?"""
